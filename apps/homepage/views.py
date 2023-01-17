@@ -17,4 +17,4 @@ def home(request):
         'segment': 'home'
     }
 
-    return render(request, 'sgim/home.html', dados)
+    return render(request, 'sgim/index.html', dados)
