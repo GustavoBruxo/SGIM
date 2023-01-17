@@ -1,0 +1,7 @@
+Modulo de Clientes
+	
+Modulo de Imóveis
+	Proprietario*, Descrição* (Nº de cômudos, nº de quartos, nº de Suítes, Nº de vagas de garagem, nº de banheiro, valor de aluguel e valor de venda), 
+	Endereço*, Área Construida m², Lote m², Matricula, Documento de Posse, Imagens*, Colocação de Placa*, Registro, tipo de serviço(Aluguel, Venda)
+Modulo de Ordem de Serviços
+Modulo de Tarefas

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Operações {% endblock %}
+{% block title-navbar %}<h3>Entrada/Saída</h3>{% endblock title-navbar %}
+
+{% block content %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!--Card com os totais-->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- Datatable -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Ações</h5>
+                            </div>
+                            <div class="card-block">    
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12">
+                                        <div class="d-flex align-items-center">
+                                            <a class="btn btn-success btn-lg" href="{% url 'criaoperacao' %}" type="button" data-toggle="tooltip">
+                                                <div class='text-center'>
+                                                    <i class="feather icon-plus icon"></i>
+                                                </div>
+                                            </a>
+                                            <div id="reportrange" class="btn btn-info btn-lg">
+                                                <span></span> <b class="caret"></b>
+                                            </div>
+                                            <div class="input-group mb-1">
+                                                <input type="text" id="search" name="search" class="form-control"placeholder="Buscar registros" aria-controls="operacoes" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h5>Operações</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="table-responsive">
+                                            <!--Datatable-->
+                                            <table class="table" id="operacoes" style="width:100%;" cellpadding="0" cellspacing="0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th class='fw-bold' hidden>Id</th>
+                                                        <th class='fw-bold' style='width: 5%'>Operação</th>
+                                                        <th class='fw-bold' style='width: 40%'>Descrição</th>
+                                                        <th class='fw-bold' style='width: 5%'>Data</th>
+                                                        <th class='fw-bold' style='width: 5%'>R$</th>
+                                                        <th class='fw-bold' style='width: 5%'>Anexos</th>
+                                                        <th class='fw-bold' style='width: 5%'>Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    {% if operacoes %}
+                                                    {% for operacao in operacoes %}
+                                                        <tr class="unread">
+                                                            <td scope="row" hidden>{{ operacao.id }}</th>
+                                                            <td>
+                                                                <div class="align-items-center">
+                                                                    {% if operacao.tipo_operacao == 'ENT' %}
+                                                                        <i class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>
+                                                                    {% else %}
+                                                                        <i class="feather icon-arrow-down text-c-red f-30 m-r-10"></i>
+                                                                    {% endif %} 
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ operacao.descricao }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ operacao.data_operacao|date:'d/m/Y' }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                {% if operacao.tipo_operacao == 'ENT' %}
+                                                                    <span class="text-c-green fw-bold rounded-pill">R$ {{ operacao.valor }}</span>
+                                                                {% else %}
+                                                                    <span class="text-c-red fw-bold rounded-pill">R$ {{ operacao.valor }}</span>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-secondary" href="{{ operacao.anexo.url }}" type="button" data-toggle="tooltip" download>
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-paperclip icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-info" href="{% url 'editaoperacao' operacao.id %}" type="button" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-edit-1 icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                                <a class="btn btn-danger" href="{% url 'deletaoperacao' operacao.id %}" type="button" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-trash-2 icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>   
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </tbody>
+                                                <tfoot class="table-light">
+                                                    <tr>
+                                                        <th class="fw-bold mb-1" colspan="3" style="text-align:right">SubTotal:</th>
+                                                        <th class="fw-bold mb-1"></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- Mensagens -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito!", m, "success")
+        </script>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/operacao.js' %}"></script>
+{% endblock %}

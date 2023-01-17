@@ -1,0 +1,72 @@
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a href="{% url 'home' %}" class="b-brand">
+                <div class="b-bg">
+                    <i class="feather icon-trending-up"></i>
+                </div>
+                <span class="b-title">SGIM</span>
+            </a>
+            <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+        </div>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li data-username="Home" class="nav-item {% if 'home' in segment %} active {% endif %}">
+                    <a href="{% url 'home' %}" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-house icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Home</span>
+                    </a>
+                </li>
+                <li data-username="Clientes" class="nav-item {% if 'clientes' in segment %} active {% endif %}">
+                    <a href="{% url 'clientes' %}" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-people icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Cliente</span>
+                    </a>
+                </li>                
+                <li data-username="Imóveis" class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-house-door icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Imóveis</span>
+                    </a>
+                </li>
+                <li data-username="Ordem de Serviço" class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-pen icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Ordem de Serviço</span>
+                    </a>
+                </li>
+                <li data-username="Entrada/Saída" class="nav-item {% if 'operacoes' in segment %} active {% endif %}">
+                    <a href="{% url 'operacoes' %}" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-plus-slash-minus icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Entrada/Saída</span>
+                    </a>
+                </li>
+    
+                <li class="nav-item pcoded-menu-caption">
+                    <label></label>
+                </li> 
+
+                <li data-username="Disabled Menu" class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-power"></i></i>
+                        </span>
+                        <span class="pcoded-mtext">Logout</span>
+                    </a>
+                </li>                               
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->

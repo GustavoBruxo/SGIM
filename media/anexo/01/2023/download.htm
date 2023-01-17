@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+        <!-- Título -->
+        <title> Rangel Braga Imóveis </title>
+
+        <!-- Ícone Favicon -->
+        <link rel="icon" href="/static/img/bg-img/Logo%20R.png" type="image/x-icon">
+
+        <!-- Stylesheet CSS -->
+        <!-- BootStrap -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'/>
+        <!-- Font Awesome -->
+        <link href="/static/css/all.min.css" rel="stylesheet"/>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+        <!-- MDB -->
+        <link href="/static/css/mdb.min.css" rel="stylesheet"/>
+        <!-- DataTables -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/af-2.5.1/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <link href="/static/css/datatable.css" rel="stylesheet"/>
+        <!-- Menu -->
+        <link href="/static/css/animate.min.css" rel="stylesheet"/>
+        <link href="/static/css/fontawesome-all.min.css" rel="stylesheet"/>
+        <link href="/static/css/style.css" rel="stylesheet"/>
+        <link href="/static/css/dark.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!-- [ Pre-loader ] start 
+        <div class="loader-bg">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+         [ Pre-loader ] End -->
+
+        
+            <!-- [ Header ] start -->
+            <header class="navbar pcoded-header navbar-expand-lg navbar-light">
+                <div class="m-header">
+                    <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
+                    <a href="/home" class="b-brand">
+                        <div class="b-bg">
+                            <i class="feather icon-trending-up"></i>
+                        </div>
+                        <span class="b-title">SGIM</span>
+                    </a>
+                </div>
+                <a class="mobile-menu" id="mobile-header" href="javascript:">
+                    <i class="feather icon-more-horizontal"></i>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li>
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="page-header-title">
+                                                
+                                                    <h3>Dashboard</h3>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>   
+                    <ul class="navbar-nav ml-auto">
+                        <li>
+                            <a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()">
+                                <i class="feather icon-maximize"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <label>
+                                <i class="icon feather icon-sun" id="theme-indicator"></i>
+                                <input type="checkbox" id="theme-switch" class="d-none" />
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <!-- [ Header ] end -->
+            <!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a href="/home" class="b-brand">
+                <div class="b-bg">
+                    <i class="feather icon-trending-up"></i>
+                </div>
+                <span class="b-title">SGIM</span>
+            </a>
+            <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+        </div>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li data-username="Home" class="nav-item ">
+                    <a href="/home" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-house icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Home</span>
+                    </a>
+                </li>
+                <li data-username="Clientes" class="nav-item ">
+                    <a href="/cliente" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-people icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Cliente</span>
+                    </a>
+                </li>                
+                <li data-username="Imóveis" class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-house-door icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Imóveis</span>
+                    </a>
+                </li>
+                <li data-username="Ordem de Serviço" class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-pen icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Ordem de Serviço</span>
+                    </a>
+                </li>
+                <li data-username="Entrada/Saída" class="nav-item ">
+                    <a href="/operacoes/" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="bi bi-plus-slash-minus icon"></i>
+                        </span>
+                        <span class="pcoded-mtext">Entrada/Saída</span>
+                    </a>
+                </li>
+    
+                <li class="nav-item pcoded-menu-caption">
+                    <label></label>
+                </li> 
+
+                <li data-username="Disabled Menu" class="nav-item">
+                    <a href="/logout" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-power"></i></i>
+                        </span>
+                        <span class="pcoded-mtext">Logout</span>
+                    </a>
+                </li>                               
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->
+
+        
+
+        
+
+<section class="container">
+    <div class="h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100 vh-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="/static/img/bg-img/Logo.png"class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="contact-form-area">
+                    <form action="/" method="POST">
+                        
+                        <input type="hidden" name="csrfmiddlewaretoken" value="5UgzcGsMVNh0K8KYxSu5wSBAzKTHbN3ZOa80mqRIeZ87U6mQdHOiPF7OjLYfDVjy">
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                            <p class="lead fw-normal mb-0 me-3"><i class="bi bi-box-arrow-in-right"></i> Login</p>
+                        </div>
+
+                        <div class="divider d-flex align-items-center my-3"></div>
+                        
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="email" name="email" class="form-control form-control-lg" placeholder="Entre com o email válido" />
+                            <label class="form-label" for="email">Email</label>
+                        </div>
+        
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <input type="password" id="senha" name="senha" class="form-control form-control-lg" placeholder="Entre com a senha" />
+                            <label class="form-label" for="senha">Senha</label>
+                        </div>
+        
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-success btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Entrar</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Ainda não tem conta?
+                                <a href="/cadastro"class="link-danger">Clique aqui</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+        <!--JavaScript-->
+        <!-- jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <!-- BootStrap -->
+        <script type="text/javascript" src="/static/js/bootstrap/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <!-- Menu -->
+        <script type="text/javascript" src="/static/js/pcoded.min.js"></script>
+        <script type="text/javascript" src="/static/js/dark-mode.js"></script>
+        <script type="text/javascript" src="/static/js/vendor-all.min.js"></script>
+        <!-- Font Awesome -->
+        <script type="text/javascript" src="/static/js/fontawesome/all.min.js"></script>
+        <!-- MDB -->
+        <script type="text/javascript" src="/static/js/mdb/mdb.min.js"></script>
+        <!-- DataTables -->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/af-2.5.1/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <!-- Moment -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+        <!-- Máscara do Input -->
+        <script type="text/javascript" src="/static/js/jquerymask/jquery.mask.js"></script>
+        <script type="text/javascript" src="/static/js/jquerymask/jquery.mask.min.js"></script>
+        
+        
+
+        
+
+    </body>
+</html>

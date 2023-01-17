@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Clientes {% endblock %}
+{% block title-navbar %}<h3>Clientes</h3>{% endblock title-navbar %}
+
+{% block content %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!--Card com os totais-->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- Datatable -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Ações</h5>
+                            </div>
+                            <div class="card-block">    
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12">
+                                        <div class="d-flex align-items-center">
+                                            <a class="btn btn-success btn-lg" href="{% url 'criacliente' %}" type="button" title="Incluir" data-toggle="tooltip">
+                                                <div class='text-center'>
+                                                    <i class="feather icon-plus icon"></i>
+                                                </div>
+                                            </a>
+                                            <div class="input-group mb-1">
+                                                <input type="text" id="search" name="search" class="form-control"placeholder="Buscar registros" aria-controls="clientes" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h5>Clientes</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="table-responsive">
+                                            <!--Datatable-->
+                                            <table class="table" id="clientes" style="width:100%;" cellpadding="0" cellspacing="0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th class='fw-bold' hidden>ID</th>
+                                                        <th class='fw-bold'>Tipo</th>
+                                                        <th class='fw-bold'>Categoria</th>
+                                                        <th class='fw-bold'>Pessoa</th>
+                                                        <th class='fw-bold'>Nome</th>
+                                                        <th class='fw-bold'>CPF/CNPJ</th>
+                                                        <th class='fw-bold'>Contato</th>
+                                                        <th class='fw-bold'>E-mail</th>
+                                                        <th class='fw-bold'>Observações</th>
+                                                        <th class='fw-bold'>Anexos</th>
+                                                        <th class="fw-bold">Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    {% if clientes %}
+                                                    {% for cliente in clientes %}
+                                                        <tr>
+                                                            <td hidden>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.id }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                {% if cliente.categoria.categoria == 'Prestador de Serviço' %}
+                                                                <button type="button" class="btn btn-info" title="Prestador de Serviço" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="bi bi-tools icon"></i>
+                                                                    </div>
+                                                                </button>
+                                                                {% elif cliente.categoria.categoria == 'Fornecedor' %}
+                                                                <button type="button" class="btn btn-warning" title="Fornecedor" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="bi bi-box-seam icon"></i>
+                                                                    </div>
+                                                                </button>
+                                                                {% elif cliente.categoria.categoria == 'Cliente' %}
+                                                                    {% if cliente.aluguel == True %}
+                                                                    <button type="button" class="btn btn-info" title="Aluguel" data-toggle="tooltip">
+                                                                        <div class="text-center">
+                                                                            <i class="bi bi-key icon"></i>
+                                                                        </div>
+                                                                    </button>
+                                                                    {% endif %}
+                                                                    {% if cliente.compra == True %}
+                                                                    <button type="button" class="btn btn-success" title="Compra" data-toggle="tooltip">
+                                                                        <div class="text-center">
+                                                                            <i class="bi bi-cash icon"></i>
+                                                                        </div>
+                                                                    </button>
+                                                                    {% endif %}
+                                                                    {% if cliente.venda == True %}
+                                                                    <button type="button" class="btn btn-secondary" title="Venda" data-toggle="tooltip">
+                                                                        <div class="text-center">
+                                                                            <i class="bi bi-bag icon"></i>
+                                                                        </div>
+                                                                    </button>
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.categoria }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.tipo_pessoa }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.nomecliente }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.cpf_cnjp }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.telefone }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.email }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{ cliente.observacao }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                {% if cliente.anexo %}
+                                                                <a class="btn btn-warning btn-lg" href="{{ cliente.anexo.url }}" type="button" title="Anexo" data-toggle="tooltip" download>
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-paperclip icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-secondary btn-lg" href="{% url 'editacliente' cliente.id %}" type="button" title="Editar" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-edit-1 icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                                <a class="btn btn-info btn-lg" href="{% url 'consultacliente' cliente.id %}" type="button" title="Consultar" data-toggle="tooltip">
+                                                                    <div class='text-center'>
+                                                                        <i class="feather icon-clipboard icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                                <a class="btn btn-danger btn-lg" href="{% url 'deletacliente' cliente.id %}" type="button" title="Apagar" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-trash-2 icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>   
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- Mensagens -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito!", m, "success")
+        </script>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/cliente/clientes.js' %}"></script>
+{% endblock %}

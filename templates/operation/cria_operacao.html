@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Operações {% endblock %}
+{% block title-navbar %}<h3>Entrada/Saída</h3>{% endblock title-navbar %}
+
+{% block content %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!--Card com os totais-->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- Datatable -->
+                        <div class="card">
+                            <div class="card-header">
+                                {% block page-title %}
+                                <h5><i class="bi bi-plus-slash-minus"></i>&nbsp;&nbsp; Incluir </h5>
+					            {% endblock page-title %}
+                            </div>
+                            <div class="card-block">
+                                <form method="POST" {% block action %} action="{% url 'criaoperacao' %}" {% endblock action %} enctype="multipart/form-data" autocomplete="off">
+                                    {% csrf_token %}
+                                    <!-- ========= Block ID (Root) ========= -->
+                                    {% block Value-id %}  {% endblock Value-id %}
+                
+                                    <div class='row'>
+                                        <div class="col-md-12">
+                                            <!-- Operation Input -->
+                                            <div class="form-group">
+                                                <label for="tipo_operacao">Operação</label>
+                                                <select id="tipo_operacao" name="tipo_operacao" class="form-control" required />
+                                                    {% block option %}
+                                                    <option value="" hidden>Selecione ...</option>
+                                                    <option disabled></option>
+                                                    <option>Entrada</option>
+                                                    <option>Saída</option>
+                                                    {% endblock option %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class="col-md-12">
+                                        <!-- Description input -->
+                                            <div class="form-group">
+                                                <label for="descricao">Descrição</label>
+                                                <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Pagamento, Água, Luz" required {% block descricao %} {% endblock descricao %}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-md-6'>
+                                            <!-- Valor Input -->
+                                            <div class="form-group">
+                                                <label for="valor">R$</label>
+                                                <input type="number" step="0.01" name="valor" id="valor" class="form-control" required {% block valor %} {% endblock valor %}/>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-6'>
+                                            <!-- Date Input -->
+                                            <div class="form-group">
+                                                <label for="data_operacao">Data</label>
+                                                <input type="date" name="data_operacao" id="data_operacao" class="form-control" required {% block dataoperaaco %} {% endblock dataoperaaco %}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-md-12'>
+                                            <!-- Anexo Input -->
+                                            <div class="form-group">
+                                                <label for="anexo">Anexo</label>
+                                                <input type="file" id="anexo" name="anexo" class="form-control dropify" {% block anexo %} required {% endblock anexo %}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-success">
+                                            <div class='text-center'>
+                                                {% block btn-action %}<i class="bi bi-plus"></i>{% endblock btn-action %}
+                                            </div>
+                                        </button>
+                                        <button type="reset" class="btn btn-info" title="Recarregar">
+                                            <div class='text-center'>
+                                                <i class="bi bi-arrow-repeat"></i>
+                                            </div>
+                                        </button>
+                                        <a class="btn btn-warning" href="{% url 'operacoes' %}" type="button" data-toggle="tooltip">
+                                            <div class='text-center'><i class="bi bi-arrow-return-left"></i></div>
+                                        </a>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- Mensagens -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito!", m, "success")
+        </script>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+{% block scripts %}
+        <script>
+            $('.dropify').dropify({
+                // default file for the file input
+                defaultFile: '',
+
+                // max file size allowed
+                maxFileSize: 0,
+
+                // custom messages
+                messages: {
+                    'default': 'Arraste e solte um arquivo aqui ou clique',
+                    'replace': 'Arraste e solte ou clique para substituir',
+                    'remove':  'Apagar',
+                    'error':   'Desculpe, este arquivo é muito grande'
+                },
+            });
+        </script>
+{% endblock %}

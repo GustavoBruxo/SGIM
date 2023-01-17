@@ -1,0 +1,41 @@
+{% extends 'operation/cria_operacao.html' %}
+{% load replace %}
+
+<!-- Title -->
+{% block page-title %}
+    <h5><i class="bi bi-plus-slash-minus"></i>&nbsp;&nbsp; Editar</h5>
+{% endblock page-title %}
+
+<!-- Action -->
+{% block action %} action="{% url 'atualizaoperacao' %}" {% endblock action %}
+
+<!-- All Inputs -->
+<!-- ID -->
+{% block Value-id %}
+<div class='row'>
+    <div class='col-3'>
+        <input type="text" name="id" class="form-control form-control-lg" value="{{ operacao.id }}" hidden>
+	</div>
+</div>
+{% endblock Value-id %}
+<!-- Tipo Operação -->
+{% block option %}
+    {% if operacao.tipo_operacao == 'ENT' %}
+        <option selected>Entrada</option>
+        <option>Saída</option>
+    {% else %}
+        <option>Entrada</option>
+        <option selected>Saída</option>
+    {% endif %}
+{% endblock option %}
+<!-- Descrição -->
+{% block descricao %} value="{{ operacao.descricao }}" {% endblock descricao %}
+<!-- Valor -->
+{% block valor %} value="{{ operacao.valor|replace }}" {% endblock valor %}
+<!-- Data Operação -->
+{% block dataoperaaco %} value="{{ operacao.data_operacao|date:'Y-m-d' }}" {% endblock dataoperaaco %}
+<!-- Anexo -->
+{% block anexo %} {% endblock anexo %}
+
+<!-- Button Action -->
+{% block btn-action %}<i class="bi bi-plus"></i>{% endblock btn-action %}

@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Cliente {% endblock %}
+{% block title-navbar %}<h3>Cliente</h3>{% endblock title-navbar %}
+
+{% block content %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!--Card com os totais-->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- Datatable -->
+                        <div class="card">
+                            <div class="card-header">
+                                {% block page-title %}
+                                <h5><i class="bi bi-plus-slash-minus"></i>&nbsp;&nbsp; Cadastro </h5>
+					            {% endblock page-title %}
+                            </div>
+                            <div class="card-block">
+                                <form method="POST" {% block action %} action="{% url 'criacliente' %}" {% endblock action %} enctype="multipart/form-data" autocomplete="off">
+                                    {% csrf_token %}
+                                    <!-- ========= Block ID (Root) ========= -->
+                                    {% block Value-id %}  {% endblock Value-id %}
+                                    <div class='row'>
+                                        <div class="col-md-6"> 
+                                            <!-- Categoria input -->
+                                            <div class="form-group">
+                                                <label for="categoria">Categoria</label>
+                                                {% block option-categoria %}
+                                                <select id="categoria" name="categoria" class="form-control" required>
+                                                    <option selected hidden>Escolha...</option>
+                                                    {% if categorias %}
+                                                        {% for categoria in categorias %}
+                                                            <option value={{categoria.id}}>{{ categoria.categoria }}</option>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </select>
+                                                {% endblock option-categoria %}
+                                            </div>
+                                        </div>
+                                        <div class='col-md-6'>
+                                            <!-- Tipo input -->
+                                            <div class="form-group">
+                                                <label for="pessoa">Pessoa</label>
+                                                {% block option-pessoa %}
+                                                <select id="pessoa" name="pessoa" class="form-control" required>
+                                                    <option selected hidden>Escolha...</option>
+                                                    <option value='Física'>Física</option>
+                                                    <option valeu='Jurídica'>Jurídica</option>
+                                                </select>
+                                                {% endblock option-pessoa %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% block opcoes %}
+                                    <div class="card-header" id="opcoes1">
+                                        <h5>Opções</h5>
+                                    </div>
+                                    <div class="card-block" id="opcoes2">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" id="aluguel" name="aluguel" class="form-check-input" {% block aluguel %} {% endblock aluguel %}>
+                                                    <label class="form-check-label" for="aluguel">Aluguel</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" id="compra" name="compra" class="form-check-input" {% block compra %} {% endblock compra %}>
+                                                    <label class="form-check-label" for="compra">Compra</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" id="venda" name="venda" class="form-check-input" {% block venda %} {% endblock venda %}>
+                                                    <label class="form-check-label" for="venda">Venda</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endblock opcoes %}
+                                    <div class="card-header">
+                                        <h5>Dados</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="nome">Nome</label>
+                                                    <input type="text" id="nome" name="nome" class="form-control" required {% block nome %} {% endblock nome %}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-md-4'>
+                                                <!-- CPF/CNPJ input -->
+                                                <div class="form-group">
+                                                    <label for="cpfcnpj">CPF/CNPJ</label>
+                                                    <input type="text" id="cpfcnpj" name="cpfcnpj" class="form-control cpfcnpj" required {% block cpfcnpj %} {% endblock cpfcnpj %}/>
+                                                </div>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <!-- CPF/CNPJ input -->
+                                                <div class="form-group">
+                                                    <label for="telefone">Contato</label>
+                                                    <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="31 12345-1234" required {% block contato %} {% endblock contato %}/>
+                                                </div>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <!-- CPF/CNPJ input -->
+                                                <div class="form-group">
+                                                    <label for="email">E-mail</label>
+                                                    <input type="email" id="email" name="email" class="form-control" required {% block email %} {% endblock email %}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <h5>Endereço</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class='row'>
+                                            <div class='col-md-4'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="cep">CEP</label>
+                                                    <input type="text" id="cep" name="cep" class="form-control" placeholder="00000-000" required {% block cep %} {% endblock cep %}/>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="logradouro">Logradouro</label>
+                                                    <input type="text" id="logradouro" name="logradouro" class="form-control" required {% block logradouro %} {% endblock logradouro %}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-md-3'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="numero">Número</label>
+                                                    <input type="number" id="numero" name="numero" class="form-control" required {% block numero %} {% endblock numero %}/>
+                                                </div>
+                                            </div>
+                                            <div class='col-md-9'>
+                                                <!-- Client Input -->
+                                                <div class="form-group ">
+                                                    <label for="complemento">Complemento</label>
+                                                    <input type="text" id="complemento" name="complemento" class="form-control" {% block complemento %} {% endblock complemento %}/>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div class='row'>
+                                            <div class='col-md-4'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="bairro">Bairro</label>
+                                                    <input type="text" id="bairro" name="bairro" class="form-control" required {% block bairro %} {% endblock bairro %}/>
+                                                </div>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="cidade">Cidade</label>
+                                                    <input type="text" id="cidade" name="cidade" class="form-control" required {% block cidade %} {% endblock cidade %}/>
+                                                </div>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <label for="estado">Estado</label>
+                                                    <input type="text" id="estado" name="estado" class="form-control" required {% block estado %} {% endblock estado %}/>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <!-- Anexo Input -->
+                                                <div class="form-group">
+                                                    <label for="anexo">Anexo</label>
+                                                    <input type="file" id="anexo" name="anexo" class="form-control dropify" {% block anexo %} {% endblock anexo %}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">
+                                        <h5>Observações</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <!-- Client Input -->
+                                                <div class="form-group">
+                                                    <textarea id="observacao" name="observacao" class="form-control" rows="5" {% block observacao %} {% endblock observacao %}></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-success" title="Incluir" data-toggle="tooltip">
+                                            <div class='text-center'>
+                                                <i class="bi bi-plus"></i>
+                                            </div>
+                                        </button>
+                                        <button type="reset" class="btn btn-info" title="Recarregar" data-toggle="tooltip">
+                                            <div class='text-center'>
+                                                <i class="bi bi-arrow-repeat"></i>
+                                            </div>
+                                        </button>
+                                        <a class="btn btn-warning" href="{% url 'clientes' %}" type="button" title="Retornar" data-toggle="tooltip">
+                                            <div class='text-center'>
+                                                <i class="bi bi-arrow-return-left"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- Mensagens -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito!", m, "success")
+        </script>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+{% block scripts %}
+        <script type="text/javascript" src="{% static 'js/cliente/criacliente.js' %}"></script>
+{% endblock %}
