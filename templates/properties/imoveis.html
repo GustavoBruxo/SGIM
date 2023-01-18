@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Imóveis {% endblock %}
+{% block title-navbar %}<h3>Imóveis</h3>{% endblock title-navbar %}
+
+{% block content %}
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!--Card com os totais-->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Ações</h5>
+                            </div>
+                            <div class="card-block">    
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12">
+                                        <div class="d-flex align-items-center">
+                                            <a class="btn btn-success btn-lg" href="#" type="button" title="Incluir" data-toggle="tooltip">
+                                                <div class='text-center'>
+                                                    <i class="feather icon-plus icon"></i>
+                                                </div>
+                                            </a>
+                                            <div class="input-group mb-1">
+                                                <input type="text" id="search" name="search" class="form-control"placeholder="Buscar registros" aria-controls="clientes" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h5>Imóveis</h5>
+                                    </div>
+                                    <div class="card-block">
+                                          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- Mensagens -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito!", m, "success")
+        </script>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+{% block scripts %}
+{% endblock %}

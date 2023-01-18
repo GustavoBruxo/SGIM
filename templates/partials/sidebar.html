@@ -29,7 +29,7 @@
                     </a>
                 </li>                
                 <li data-username="Imóveis" class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{% url 'imoveis' %}" class="nav-link {% if 'imoveis' in segment %} active {% endif %}">
                         <span class="pcoded-micon">
                             <i class="bi bi-house-door icon"></i>
                         </span>
