@@ -40,7 +40,7 @@
                                         <h5>Imóveis</h5>
                                     </div>
                                     <div class="card-block">
-                                          
+                                        <div id="map"></div>
                                     </div>
                                 </div>
                             </div>
@@ -63,4 +63,18 @@
 {% endfor %}
 {% endblock %}
 {% block scripts %}
+        <script>
+            var icon =  L.icon({
+                iconUrl: '<i class="bi bi-house-fill"></i>',
+                iconSize: [38, 95],
+                iconAnchor: [22, 94],
+                popupAnchor: [-3, -76],
+            });
+            var map = L.map('map').setView([-19.6822,-44.8906], 15);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            var marker = L.marker([-19.6822,-44.8906], {icon: icon}).addTo(map).bindPopup('<b>Hello world!</b><br/>I am a popup.').openPopup();
+        </script>
 {% endblock %}

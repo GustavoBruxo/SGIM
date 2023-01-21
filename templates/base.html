@@ -33,20 +33,19 @@
         <link href="{% static 'css/dark.css' %}" rel="stylesheet"/>
         <!-- Dropify -->
         <link href="{% static 'css/dropify.min.css' %}" rel="stylesheet"/>
-        <!-- MAPBOX -->
-        <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet'/>
+        <!-- Leaflet -->
+        <link href="{% static 'css/leaflet.css' %}" rel="stylesheet"/>
     </head>
     <body>
 
-        <!-- [ Pre-loader ] start 
-        <div class="loader-bg">
-            <div class="loader-track">
-                <div class="loader-fill"></div>
-            </div>
-        </div>
-         [ Pre-loader ] End -->
-
         {% if user.is_authenticated %}
+            <!-- [ Pre-loader ] start
+            <div class="loader-bg">
+                <div class="loader-track">
+                    <div class="loader-fill"></div>
+                </div>
+            </div>
+             [ Pre-loader ] End -->
             <!-- [ Header ] start -->
             <header class="navbar pcoded-header navbar-expand-lg navbar-light">
                 <div class="m-header">
@@ -134,8 +133,8 @@
         <script type="text/javascript" src="{% static 'js/jquerymask/jquery.mask.min.js' %}"></script>
         <!-- Dropify -->
         <script type="text/javascript" src="{% static 'js/dropify.min.js' %}"></script>
-        <!-- MAPBOX -->
-        <script type="text/javascript" src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
+        <!-- Leaflet -->
+        <script type="text/javascript" src="{% static 'js\imoveis\leaflet.js' %}"></script>
 
         {% block scripts %}
 
