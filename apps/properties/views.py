@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import Properties, Album
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def imoveis(request):
 
     dados = {

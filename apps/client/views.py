@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import Client, Category
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def clientes(request):
     clientes = Client.objects.filter(ativo=True).order_by('-data_cadastro')
 
@@ -24,7 +24,7 @@ def clientes(request):
 
     return render(request, 'client/clientes.html', dados)
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def criacliente(request):
     if request.method == 'POST':
         """Inclui um operação"""
@@ -88,7 +88,7 @@ def criacliente(request):
         return render(request, 'client/cria_cliente.html', dados)
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def deletacliente(request, idcliente):
     """Deleta um cliente"""
     cliente =get_object_or_404(Client, pk=idcliente)
@@ -118,7 +118,7 @@ def consultacliente(request, idcliente):
     return render(request, 'client/consulta_cliente.html', dados)
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def editacliente(request, idcliente):
     """Edita a cliente selecionado"""
     cliente = Client.objects.get(id=idcliente)
@@ -139,7 +139,7 @@ def editacliente(request, idcliente):
     return render(request, 'client/edita_cliente.html', dados)
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def atualizacliente(request):
     """Atualiza a cliente"""
     if request.method == 'POST':

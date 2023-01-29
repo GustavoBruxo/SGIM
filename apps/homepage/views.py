@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-@login_required(login_url="/login/")
+@login_required(login_url="/")
 def home(request):
     ano_atual = date.today().year
     mes_atual = date.today().month
