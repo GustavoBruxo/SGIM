@@ -7,5 +7,5 @@ urlpatterns = [
     path('cliente/deleta/<int:idcliente>', deletacliente, name='deletacliente'),
     path('cliente/edita/<int:idcliente>', editacliente, name='editacliente'),
     path('cliente/consulta/<int:idcliente>', consultacliente, name='consultacliente'),
-    path('cliente/atualiza/', atualizacliente, name='atualizacliente'),
+    path('cliente/atualiza/', atualizacliente, name='atualizacliente')
 ]
