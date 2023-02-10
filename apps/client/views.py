@@ -99,11 +99,11 @@ def deletacliente(request, idcliente):
 
 @login_required(login_url="/login/")
 def consultacliente(request, idcliente):
-    """Edita a cliente selecionado"""
+    """ Consulta cliente selecionado """
     cliente = Client.objects.get(id=idcliente)
     categorias = Category.objects.order_by('-id')
     
-    """Valida Tipo Pessoa"""
+    """ Valida Tipo Pessoa """
     if cliente.tipo_pessoa == 'PF':
         cliente.tipo_pessoa = 'Física'
     else:
@@ -120,11 +120,11 @@ def consultacliente(request, idcliente):
 
 @login_required(login_url="/")
 def editacliente(request, idcliente):
-    """Edita a cliente selecionado"""
+    """ Edita cliente selecionado """
     cliente = Client.objects.get(id=idcliente)
     categorias = Category.objects.order_by('-id')
     
-    """Valida Tipo Pessoa"""
+    """ Valida Tipo Pessoa """
     if cliente.tipo_pessoa == 'PF':
         cliente.tipo_pessoa = 'Física'
     else:
@@ -141,7 +141,7 @@ def editacliente(request, idcliente):
 
 @login_required(login_url="/")
 def atualizacliente(request):
-    """Atualiza a cliente"""
+    """ Atualiza cliente """
     if request.method == 'POST':
         cliente = Client.objects.get(pk=request.POST.get('id'))
         categoria = request.POST['categoria']

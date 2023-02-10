@@ -9,7 +9,6 @@
     <div class="pcoded-wrapper">
         <div class="pcoded-content">
             <div class="pcoded-inner-content">
-                <!--Card com os totais-->
                 <div class="main-body">
                     <div class="page-wrapper">
                         <div class="card">
@@ -20,7 +19,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xl-12">
                                         <div class="d-flex align-items-center">
-                                            <a class="btn btn-success btn-lg" href="#" type="button" title="Incluir" data-toggle="tooltip">
+                                            <a class="btn btn-success btn-lg" href="{% url 'criaimoveis' %}" type="button" title="Incluir" data-toggle="tooltip">
                                                 <div class='text-center'>
                                                     <i class="feather icon-plus icon"></i>
                                                 </div>
@@ -40,7 +39,87 @@
                                         <h5>Imóveis</h5>
                                     </div>
                                     <div class="card-block">
-                                        <div id="map" style="width:100%;height:500px;"></div>
+                                        <div class="table-responsive">
+                                            <!--Datatable-->
+                                            <table class="table" id="imoveis" style="width:100%;" cellpadding="0" cellspacing="0">
+                                                <thead class="table-light">
+                                                    <th class='fw-bold' hidden>ID</th>
+                                                    <th class='fw-bold'>Tipo de Imóvel</th>
+                                                    <th class='fw-bold'>Categoria</th>
+                                                    <th class='fw-bold'>Endereço</th>
+                                                    <th class='fw-bold'>Preço</th>
+                                                    <th class="fw-bold">Ações</th>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    {% if imoveis %}
+                                                    {% for imovel in imoveis %}
+                                                        <tr>
+                                                            <td hidden>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{imovel.id}}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1"></p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                {% if imovel.aluguel == True %}
+                                                                    <button type="button" class="btn btn-info" title="Aluguel" data-toggle="tooltip">
+                                                                        <div class="text-center">
+                                                                            <i class="bi bi-key icon"></i>
+                                                                        </div>
+                                                                    </button>
+                                                                {% endif %}
+                                                                {% if imovel.compra == True %}
+                                                                    <button type="button" class="btn btn-success" title="Compra" data-toggle="tooltip">
+                                                                        <div class="text-center">
+                                                                            <i class="bi bi-cash icon"></i>
+                                                                        </div>
+                                                                    </button>
+                                                                {% endif %}
+                                                                {% if imovel.venda == True %}
+                                                                    <button type="button" class="btn btn-secondary" title="Venda" data-toggle="tooltip">
+                                                                        <div class="text-center">
+                                                                            <i class="bi bi-bag icon"></i>
+                                                                        </div>
+                                                                    </button>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">{{imovel.logradouro}}, {{imovel.numero}}, {{imovel.bairro}}, {{imovel.cidade}} - {{imovel.estado}}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <p class="fw-bold mb-1">R$ {{imovel.preco}}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-secondary btn-lg" href="#" type="button" title="Editar" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-edit-1 icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                                <a class="btn btn-info btn-lg" href="#" type="button" title="Consultar" data-toggle="tooltip">
+                                                                    <div class='text-center'>
+                                                                        <i class="feather icon-clipboard icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                                <a class="btn btn-danger btn-lg" href="#" type="button" title="Apagar" data-toggle="tooltip">
+                                                                    <div class="text-center">
+                                                                        <i class="feather icon-trash-2 icon"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +140,4 @@
         </script>
     {% endif %}
 {% endfor %}
-{% endblock %}
-{% block scripts %}
-        <script type="text/javascript" src="{% static 'js/imoveis/imoveis.js' %}"></script>
 {% endblock %}

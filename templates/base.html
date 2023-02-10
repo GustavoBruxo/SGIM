@@ -33,8 +33,10 @@
         <link href="{% static 'css/dark.css' %}" rel="stylesheet"/>
         <!-- Dropify -->
         <link href="{% static 'css/dropify.min.css' %}" rel="stylesheet"/>
-
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+        <!-- Leaflet -->
+        <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" type="text/css" rel="stylesheet"/>
+        <!-- Select2 -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
 
@@ -133,7 +135,10 @@
         <script type="text/javascript" src="{% static 'js/jquerymask/jquery.mask.min.js' %}"></script>
         <!-- Dropify -->
         <script type="text/javascript" src="{% static 'js/dropify.min.js' %}"></script>
+        <!-- Leaflet -->
         <script type="text/javascript" src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <!-- Select2 -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
         {% block scripts %}
 
