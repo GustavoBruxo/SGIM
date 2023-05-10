@@ -1,0 +1,89 @@
+{% load static %}
+
+        <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+            <a class="navbar-brand me-lg-5" href="{% url 'home' %}">
+                <img class="navbar-brand-dark" src="{% static 'img/bg-img/Logo R2.png' %}" alt="Rangel logo"/>
+                <img class="navbar-brand-light" src="{% static 'img/bg-img/Logo R2.png' %}" alt="Rangel logo"/>
+            </a>
+            <div class="d-flex align-items-center">
+                <button
+                    class="navbar-toggler d-lg-none collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
+            <div class="sidebar-inner px-4 pt-3">
+                <ul class="nav flex-column pt-3 pt-md-0">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link d-flex align-items-center">
+                            <span class="sidebar-icon">
+                                <img src="{% static 'img/bg-img/Logo R2.png' %}" height="20" width="20" alt="Rangel Logo"/>
+                            </span>
+                            <span class="mt-1 ms-1 sidebar-text">Rangel Braga</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if 'home' in segment %} active {% endif %}">
+                        <a href="{% url 'home' %}" class="nav-link">
+                            <span class="sidebar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                                    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+                                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if 'clientes' in segment %} active {% endif %}">
+                        <a href="{% url 'clientes' %}" class="nav-link">
+                            <span class="sidebar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Cliente</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if 'imoveis' in segment %} active {% endif %}">
+                        <a href="{% url 'imoveis' %}" class="nav-link">
+                            <span class="sidebar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-add-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 1 1-1 0v-1h-1a.5.5 0 1 1 0-1h1v-1a.5.5 0 0 1 1 0Z"/>
+                                    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+                                    <path d="m8 3.293 4.712 4.712A4.5 4.5 0 0 0 8.758 15H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Imóveis</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if 'ordemserico' in segment %} active {% endif %}">
+                        <a href="#" class="nav-link">
+                            <span class="sidebar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Ordem de Serviço</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {% if 'operacoes' in segment %} active {% endif %}">
+                        <a href="{% url 'operacoes' %}" class="nav-link">
+                            <span class="sidebar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus icon icon-xs me-2" viewBox="0 0 16 16">
+                                    <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Entrada/Saída</span>
+                        </a>
+                    </li>
+                    <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+                </ul>
+            </div>
+        </nav>

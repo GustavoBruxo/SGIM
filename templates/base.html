@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+        <!-- Ícone Favicon -->
+        <link rel="icon" href="{% static 'img/bg-img/Logo R2.png' %}" type="image/x-icon">
+        
+        <title>{% block title %} Rangel Braga Imóveis {% endblock %}</title>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'assets/vendor/sweetalert2/dist/sweetalert2.min.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'assets/vendor/notyf/notyf.min.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'assets/css/volt.css' %}" type="text/css" rel="stylesheet"/>
+        <!-- DataTables -->
+        <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/af-2.5.1/datatables.min.css" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'assets/css/daterangepicker/daterangepicker.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'assets/css/datatable.css' %}" type="text/css" rel="stylesheet"/>
+        <!-- Dropify -->
+        <link href="{% static 'assets/css/dropify/dropify.min.css' %}" type="text/css" rel="stylesheet"/>
+        <!-- Mapbox -->
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' type="text/css" rel="stylesheet"/>
+        <link href="{% static 'assets/css/home/home.css' %}" type="text/css" rel="stylesheet"/>
+        
+        <!-- Specific Page JS goes HERE  -->    
+        {% block stylesheets %}{% endblock stylesheets %}
+    </head>
+    <body>
+        {% include 'partials/_sidebar.html' %}
+    
+        <main class="content">
+            {% include 'partials/_navigation.html' %}
+    
+            {% block content %}
+          
+            {% endblock content %} 
+        </main>
+
+      {% include 'partials/_scripts.html' %}
+        
+      <!-- Specific Page JS goes HERE  -->
+      {% block javascripts %} {% endblock javascripts %}    
+    </body>
+</html>

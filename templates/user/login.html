@@ -1,0 +1,77 @@
+{% extends "base-fullscreen.html" %}
+{% load static %}
+
+{% block title %} Entrar {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        <section class="bg-white vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-md-9 col-lg-6 col-xl-5">
+                        <img src="{% static 'img/bg-img/Logo.png' %}"class="img-fluid" alt="Sample image">
+                    </div>
+                    <div class="border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                        <br />
+                            <p>
+                                {% if msg %}
+                                    {% include 'partials/_alertas.html' %}
+                                {% endif %}                                     
+                            </p> 
+                        </div>
+                        <form method="POST" action="{% url 'login' %}" class="mt-4">
+                            {% csrf_token %}
+                            <!-- Form -->
+                            <div class="form-group mb-4">
+                                <label for="email">E-mail</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <span class="fas fa-user-circle"></span>
+                                    </span>
+                                    <!-- Email input -->
+                                    <input type="text" id="email" name="email" class="form-control form-control-lg" placeholder="Entre com o email válido" />
+                                </div>  
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group mb-4">
+                                    <label for="password">Senha</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <span class="fas fa-unlock-alt"></span>
+                                        </span>
+                                        <!-- Password input -->
+                                        <input type="password" id="senha" name="senha" class="form-control form-control-lg" placeholder="Entre com a senha" />
+                                    </div>  
+                                </div>
+                                <!-- End of Form -->
+                                <div class="d-flex justify-content-between align-items-top mb-4">
+                                    <div>
+                                        <a href="{% url 'reset' %}" class="small text-right">Esqueceu a senha?</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" name="login" class="btn btn-gray-800">Entrar</button>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-center align-items-center mt-4">
+                            <span class="fw-normal">
+                                Ainda não possui conta?
+                                <a href="{% url 'cadastro' %}" class="fw-bold">Clique aqui</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

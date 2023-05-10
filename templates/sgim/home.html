@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+{% load replace %}
+
+{% block title %} Home {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <div class="py-4">
+            <div class="dropdown">
+                <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    Nova tarefa
+                </button>
+                <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                        </svg>
+                        Adicionar Cliente
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-add-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 1 1-1 0v-1h-1a.5.5 0 1 1 0-1h1v-1a.5.5 0 0 1 1 0Z"/>
+                            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+                            <path d="m8 3.293 4.712 4.712A4.5 4.5 0 0 0 8.758 15H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+                        </svg>
+                        Adicionar Imóveis
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                        </svg>
+                        Adicionar OS
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-slash-minus icon icon-xs me-2" viewBox="0 0 16 16">
+                            <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"/>
+                        </svg>
+                        Adicionar E/S
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-0 shadow">
+                    <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                        <div class="col-md-10 d-block mb-3 mb-sm-0">
+                            <div class="fs-5 fw-normal mb-2">Imóveis</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-fill" viewBox="0 0 16 16">
+                                        <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+                                    </svg>
+                                </span>
+                                <select id="tipo_imovel" name="tipo_imovel" class="form-control" required>
+                                    <option value='TODOS' selected>Todos</option>
+                                    <option value='CS'>Casa</option>
+                                    <option value='AP'>Apartamento</option>
+                                    <option value='TR'>Terreno</option>
+                                    <option value='GL'>Galpão</option>
+                                    <option value='IN'>Industria</option>
+                                    <option value='RU'>Rural</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-2">
+                        <div id="map" style="width:100%;height:800px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VzdGF2b3NnaW0iLCJhIjoiY2xkYWZhNG5qMDlpYjNwcDZkbzMzdHRlbSJ9.1f1FocVPKq1ajqPRSPxUrg';
+            
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: [-44.89020033670517, -19.68235588860937],
+                zoom: 13.5,
+                bearing: 0,
+                pitch: 0
+            });
+            
+            var locations = [
+                {% if imoveis %}
+                    {% for imovel in imoveis %}
+                        { 
+                            latitude: {{ imovel.latitude|replace }}, 
+                            longitude: {{ imovel.longitude|replace }}, 
+                            title: '{{imovel.logradouro}}, {{imovel.numero}}, {{imovel.bairro}}',
+                            description: 'R$ {{imovel.preco}}',
+                            tipo_imovel: '{{imovel.tipo_imovel}}'
+                        },
+                    {% endfor %}
+                {% endif %}
+            ];
+
+            var icons = {
+                'CS': 'url({% static "img/bg-img/house-fill.svg" %})',
+                'AP': 'url({% static "img/bg-img/building-fill.svg" %})',
+                'TR': 'url({% static "img/bg-img/image-alt.svg" %})',
+                'GL': 'url({% static "img/bg-img/shop-window.svg" %})',
+                'IN': 'url({% static "img/bg-img/buildings-fill.svg" %})',
+                'RU': 'url({% static "img/bg-img/farm.svg" %})',
+                'default': 'url(https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png)'
+            };
+
+            var filterSelect = document.getElementById('tipo_imovel')
+
+            filterSelect.addEventListener('change', function(e) {
+                var selectedValue = e.target.value;
+                // Remove todos os marcadores do mapa
+                markerList.forEach(function(marker) {
+                    marker.remove();
+                });
+
+                locations.forEach(function(location) {
+                    if (selectedValue === 'TODOS' || selectedValue === location.tipo_imovel) {
+                        var markerIcon = icons[location.tipo_imovel] || icons['default'];
+
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+                        el.style.backgroundImage = markerIcon;
+                        el.style.width = '16px';
+                        el.style.height = '16px';
+
+                        var marker = new mapboxgl.Marker({ element: el })
+                            .setLngLat([location.longitude, location.latitude])
+                            .setPopup(new mapboxgl.Popup({ offset: 25, className: 'popup' })
+                            .setHTML('<h6>' + location.title + '</h6><p>'+ location.description +'</p><p>' + location.tipo_imovel + '</p>'))
+                            .addTo(map);
+
+                        // Adiciona o marcador à lista de marcadores para que possa ser removido posteriormente
+                        markerList.push(marker);
+                    }
+                });
+            });
+
+            map.addControl(new mapboxgl.NavigationControl());
+            map.addControl(new mapboxgl.FullscreenControl());
+        </script>
+{% endblock javascripts %}

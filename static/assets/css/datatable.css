@@ -1,0 +1,10 @@
+.dataTables_filter{
+    display: none;
+}
+
+#operacao, #clientes {
+    table-layout: fixed !important;
+    word-wrap: break-word;
+    width: 100%;
+    height: 100%;
+}

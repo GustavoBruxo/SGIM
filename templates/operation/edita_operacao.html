@@ -1,0 +1,42 @@
+{% extends 'operation/cria_operacao.html' %}
+{% load replace %}
+
+<!-- ID Modal -->
+{% block modal-operaao %} id="editaoperacao{{ operacao.id }}" {% endblock modal-operaao %}
+
+<!-- Title -->
+{% block page-title %}Edita{% endblock page-title %}
+
+<!-- Action -->
+{% block action %} action="{% url 'atualizaoperacao' %}" {% endblock action %}
+
+<!-- All Inputs -->
+<!-- ID -->
+{% block Value-id %}
+<div class="form-group mb-4">
+    <div class="input-group">
+        <input type="text" name="id" class="form-control" value="{{ operacao.id }}" hidden>
+    </div>
+</div>
+{% endblock Value-id %}
+
+<!-- Tipo Operação -->
+{% block option %}
+    <select id="tipo_operacao" name="tipo_operacao" class="form-control" autofocus required>
+    {% if operacao.tipo_operacao == 'ENT' %}
+        <option selected>Entrada</option>
+        <option>Saída</option>
+    {% else %}
+        <option>Entrada</option>
+        <option selected>Saída</option>
+    {% endif %}
+    </select>
+{% endblock option %}
+<!-- Descrição -->
+{% block descricao %} value="{{ operacao.descricao }}" {% endblock descricao %}
+<!-- Valor -->
+{% block valor %} value="{{ operacao.valor|replace }}" {% endblock valor %}
+<!-- Data Operação -->
+{% block dataoperaaco %} value="{{ operacao.data_operacao|date:'Y-m-d' }}" {% endblock dataoperaaco %}
+<!-- Anexo -->
+{% block anexo %} {% endblock anexo %}

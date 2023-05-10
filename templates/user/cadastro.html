@@ -1,0 +1,98 @@
+{% extends "base-fullscreen.html" %}
+{% load static %}
+
+{% block title %} Cadastro {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        <section class="bg-white vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-md-9 col-lg-6 col-xl-5">
+                        <img src="{% static 'img/bg-img/Logo.png' %}"class="img-fluid" alt="Sample image">
+                    </div>
+                    <div class="border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                            <br />
+                            <p>
+                                {% if msg %}
+                                    {% include 'partials/_alertas.html' %}
+                                {% endif %}                                     
+                            </p> 
+                        </div>
+                        <form method="POST" action="{% url 'cadastro' %}" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label for="email">Nome Completo</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <span class="fas fa-user-circle"></span>
+                                    </span>
+                                    <input type="text" id="nome" name="nome" class="form-control form-control-lg" placeholder="Ex.:Rangel Braga" required/>
+                                </div>  
+                                <span class="text-error">{{ form.username.errors }}</span>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="email">E-mail</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <span class="fas fa-envelope"></span>
+                                    </span>
+                                    <input type="text" id="email" name="email" class="form-control form-control-lg" placeholder="Ex.: rangel.braga@email.com" required/>
+                                </div>  
+                                <span class="text-error">{{ form.email.errors }}</span>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group mb-4">
+                                    <label for="password">Senha</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <span class="fas fa-unlock-alt"></span>
+                                        </span>
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Digite sua senha" required/>
+                                    </div>  
+                                    <span class="text-error">{{ form.password1.errors }}</span>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password">Confirmação de senha</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <span class="fas fa-unlock-alt"></span>
+                                        </span>
+                                        <input type="password" id="password2" name="password2" class="form-control form-control-lg" placeholder="Digite sua senha mais uma vez" required/>
+                                    </div>  
+                                    <span class="text-error">{{ form.password2.errors }}</span>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="remember">
+                                        <label class="form-check-label fw-normal mb-0" for="remember">
+                                            Eu concordo com os <a href="#" class="fw-bold">Termos e Condições</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" name="register" class="btn btn-gray-800">Criar sua conta</button>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-center align-items-center mt-4">
+                            <span class="fw-normal">
+                                Já tenho uma conta?
+                                <a href="{% url 'login' %}" class="fw-bold">Login</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

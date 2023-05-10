@@ -1,0 +1,95 @@
+{% extends 'properties/cria_imoveis.html' %}
+{% load replace %}
+
+<!-- ID Modal -->
+{% block modal-operaao %} id="editaimoveis{{ imovel.id }}" {% endblock modal-operaao %}
+
+<!-- Title -->
+{% block page-title %}Editar{% endblock page-title %}
+
+<!-- Action -->
+{% block action %} action="{% url 'atualizaimoveis' %}" {% endblock action %}
+
+<!-- All Inputs -->
+<!-- ID -->
+{% block Value-id %}
+<div class="form-group mb-4">
+    <div class="input-group">
+        <input type="text" name="id" id="id" class="form-control" value="{{ imovel.id }}" hidden>
+    </div>
+</div>
+{% endblock Value-id %}
+
+{% block ativo %} {% if imovel.ativo == True %} checked {% endif %} {% endblock ativo %}
+
+{% block option-tipo_imovel %}
+<select id="tipo_imovel" name="tipo_imovel" class="form-control" required>
+    <option value="{{ imovel.tipo_imovel }}" selected>  
+        {% for tipoimovel in tiposimoveis %}
+            {% if imovel.tipo_imovel == tipoimovel.0 %}
+                {{ tipoimovel.1 }}
+            {% endif %}
+        {% endfor %}
+    </option>
+    {% for tipoimovel in tiposimoveis %}
+        {% if imovel.tipo_imovel != tipoimovel.0 %}
+            <option value='{{tipoimovel.0}}'>{{tipoimovel.1}}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+{% endblock option-tipo_imovel %}
+
+{% block option-clientes %}
+<select id="cliente" name="cliente" class="form-control" required> 
+    {% for cliente in clientes %}
+        {% if cliente.id == imovel.cliente.id %}
+            <option value="{{ cliente.id }}" selected>{{cliente.nomecliente}}</option>
+        {% endif %}
+    {% endfor %}
+    {% for cliente in clientes %}
+        {% if cliente.id != imovel.cliente.id  %}
+            <option value="{{cliente.id}}">{{cliente.nomecliente}}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+{% endblock option-clientes %}
+
+{% block aluguel %} {% if imovel.aluguel == True %} checked {% endif %} {% endblock aluguel %}
+{% block compra %} {% if imovel.compra == True %} checked {% endif %} {% endblock compra %}
+{% block venda %} {% if imovel.venda == True %} checked {% endif %} {% endblock venda %}
+
+{% block preco %} value="{{ imovel.preco|replace }}" {% endblock preco %}
+
+{% block nquartos %} value="{{ imovel.numeroquartos }}" {% endblock nquartos %}
+
+{% block nbanheiros %} value="{{ imovel.numerobanheiros }}" {% endblock nbanheiros %}
+
+{% block areatotal %} value="{{ imovel.areatotal|replace }}" {% endblock areatotal %}
+
+{% block areaconstruida %} value="{{ imovel.areaconstruida|replace }}" {% endblock areaconstruida %}
+
+{% block nvagasgaragem %} value="{{ imovel.vagasgaragem }}" {% endblock nvagasgaragem %}
+
+{% block capa %} {% endblock capa %}
+
+{% block cep %} value="{{ imovel.cep }}" {% endblock cep %}
+
+{% block latitude %} value="{{ imovel.latitude|replace }}" {% endblock latitude %}
+
+{% block longitude %} value="{{ imovel.longitude|replace }}" {% endblock longitude %}
+
+{% block logradouro %} value="{{ imovel.logradouro }}" {% endblock logradouro %}
+
+{% block numero %} value="{{ imovel.numero }}" {% endblock numero %}
+
+{% block complemento %} value="{{ imovel.complemento }}" {% endblock complemento %}
+
+{% block bairro %} value="{{ imovel.bairro }}" {% endblock bairro %}
+
+{% block cidade %} value="{{ imovel.cidade }}" {% endblock cidade %}
+
+{% block estado %} value="{{ imovel.estado }}" {% endblock estado %}
+
+{% block descricao %} value="{{ imovel.descricao }}" {% endblock descricao %}
+
+{% block imagens %} {% endblock imagens %}

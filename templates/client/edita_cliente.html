@@ -1,0 +1,103 @@
+{% extends 'client/cria_cliente.html' %}
+{% load replace %}
+
+<!-- ID Modal -->
+{% block modal-operaao %} id="editacliente{{ cliente.id }}" {% endblock modal-operaao %}
+
+<!-- Title -->
+{% block page-title %}Editar{% endblock page-title %}
+
+<!-- Action -->
+{% block action %} action="{% url 'atualizacliente' %}" {% endblock action %}
+
+<!-- All Inputs -->
+<!-- ID -->
+{% block Value-id %}
+<div class="form-group mb-4">
+    <div class="input-group">
+        <input type="text" name="id" class="form-control" value="{{ cliente.id }}" hidden>
+    </div>
+</div>
+{% endblock Value-id %}
+
+<!-- Categoria -->
+{% block option-categoria %}
+    <select id="categoria" name="categoria" class="form-control" required>
+        <option value={{cliente.categoria}} selected>{{ cliente.categoria }}</option>
+    {% for categoria in categoria %}
+        {% if categoria.categoria != cliente.categoria.categoria %}
+            <option value={{categoria.id}}>{{ categoria.categoria }}</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+{% endblock option-categoria %}
+
+<!-- Pessoa -->
+{% block option-pessoa %}
+    <select id="pessoa" name="pessoa" class="form-control" required>
+    {% if cliente.tipo_pessoa == 'Física' %}
+        <option value='Física' selected>Física</option>
+        <option valeu='Jurídica'>Jurídica</option>
+    {% else %}
+        <option value='Física'>Física</option>
+        <option valeu='Jurídica' selected>Jurídica</option>
+    {% endif %}
+    </select>
+{% endblock option-pessoa %}
+
+<!-- Opções -->
+{% block opcoes %}
+{% if cliente.categoria.categoria == 'Cliente' %}
+<div class="form-group mb-4" id="opcoes1">
+    <label class="form-check-label">Opções</label>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="aluguel" name="aluguel" {% block aluguel %} {% if cliente.aluguel == True %} checked {% endif %} {% endblock aluguel %}>
+                <label class="form-check-label" for="aluguel">Aluguel</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="compra" name="compra" {% block compra %} {% if cliente.compra == True %} checked {% endif %} {% endblock compra %}>
+                <label class="form-check-label" for="compra">Compra</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="venda" name="venda" {% block venda %} {% if cliente.venda == True %} checked {% endif %} {% endblock venda %}>
+                <label class="form-check-label" for="venda">Venda</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock opcoes %}
+
+<!-- Nome -->
+{% block nome %} value="{{ cliente.nomecliente }}" {% endblock nome %}
+<!-- CPF/CNPJ -->
+{% block cpfcnpj %} value="{{ cliente.cpf_cnjp }}" {% endblock cpfcnpj %}
+<!-- Contato -->
+{% block contato %} value="{{ cliente.telefone }}" {% endblock contato %}
+<!-- E-ail -->
+{% block email %} value="{{ cliente.email }}" {% endblock email %}
+<!-- CEP -->
+{% block cep %} value="{{ cliente.cep }}" {% endblock cep %}
+<!-- Logradouro -->
+{% block logradouro %} value="{{ cliente.logradouro }}" {% endblock logradouro %}
+<!-- Nº -->
+{% block numero %} value="{{ cliente.numero }}" {% endblock numero %}
+<!-- Complemento -->
+{% block complemento %} value="{{ cliente.complemento }}" {% endblock complemento %}
+<!-- Bairro -->
+{% block bairro %} value="{{ cliente.bairro }}" {% endblock bairro %}
+<!-- Cidade -->
+{% block cidade %} value="{{ cliente.cidade }}" {% endblock cidade %}
+<!-- Estado -->
+{% block estado %} value="{{ cliente.estado }}" {% endblock estado %}
+<!-- Anexo -->
+{% block anexo %} {% endblock anexo %}
+<!-- Observação -->
+{% block observacao %} value="{{ cliente.observacao }}" {% endblock observacao %}
