@@ -1,0 +1,1 @@
+web: gunicorn SGIM.wsgi --log-file -
