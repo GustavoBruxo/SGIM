@@ -15,9 +15,9 @@ SECRET_KEY = 'django-insecure-m!3kduk%gd2p)yh@n$!#pby47s!+@q=-ry8i$%mhb6eh-u2jzo
 DEBUG = True
 
 # load production server from .env
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-server-production-2644.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-e415.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://django-server-production-2644.up.railway.app']
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
