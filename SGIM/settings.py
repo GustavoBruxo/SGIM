@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-m!3kduk%gd2p)yh@n$!#pby47s!+@q=-ry8i$%mhb6eh-u2jzo
 DEBUG = True
 
 # load production server from .env
-ALLOWED_HOSTS = ['web-production-e415.up.railway.app']
+ALLOWED_HOSTS = ['web-production-e415.up.railway.app', '127.0.0.1']
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_NAME = 'SGIM - Rangel Braga Imóveis'
@@ -82,8 +82,11 @@ WSGI_APPLICATION = 'SGIM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sgim',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'localhost'
     }
 }
 
