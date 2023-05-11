@@ -16,10 +16,12 @@ DEBUG = True
 
 # load production server from .env
 ALLOWED_HOSTS = ['web-production-e415.up.railway.app', '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['https://web-production-e415.up.railway.app', 'http://*.127.0.0.1', 'https://*.127.0.0.1']
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_NAME = 'SGIM - Rangel Braga Imóveis'
-
 
 # Application definition
 
@@ -76,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SGIM.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -89,7 +90,6 @@ DATABASES = {
         'HOST': 'localhost'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -109,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -120,7 +119,6 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
