@@ -1,4 +1,5 @@
 import os, sys
+import dj_database_url
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,13 +83,7 @@ WSGI_APPLICATION = 'SGIM.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sgim',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': 'localhost'
-    }
+    'default': dj_database_url.config()
 }
 
 # Password validation
