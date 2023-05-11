@@ -17,7 +17,7 @@ DEBUG = True
 # load production server from .env
 ALLOWED_HOSTS = ['sgim-production.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://django-server-production-2644.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://sgim-production.up.railway.app']
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
