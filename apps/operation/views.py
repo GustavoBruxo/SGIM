@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-@login_required(login_url="/")
+@login_required(login_url="login/")
 def operacoes(request):
     operacoes = Operation.objects.order_by('-data_operacao')
 
@@ -31,7 +31,7 @@ def operacoes(request):
     return render(request, 'operation/operacoes.html', dados)
 
 
-@login_required(login_url="/")
+@login_required(login_url="login/")
 def criaoperacao(request):
     if request.method == 'POST':
         """Inclui um operação"""
@@ -61,7 +61,7 @@ def criaoperacao(request):
         return render(request, 'operation/cria_operacao.html')
 
 
-@login_required(login_url="/")
+@login_required(login_url="login/")
 def deletaoperacao(request, idoperacao):
     """Deleta uma operação"""
     operacao = get_object_or_404(Operation, pk=idoperacao)
@@ -70,7 +70,7 @@ def deletaoperacao(request, idoperacao):
     return redirect('operacoes')
 
 
-@login_required(login_url="/")
+@login_required(login_url="login/")
 def editaoperacao(request, idoperacao):
     """Edita a operação selecionada"""
     operacao = Operation.objects.get(id=idoperacao)
@@ -85,7 +85,7 @@ def editaoperacao(request, idoperacao):
     return render(request, 'operation/edita_operacao.html', dados)
 
 
-@login_required(login_url="/")
+@login_required(login_url="login/")
 def atualizaoperacao(request):
     """Atualiza a operação"""
     if request.method == 'POST':

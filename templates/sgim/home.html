@@ -60,7 +60,7 @@
                                     </svg>
                                 </span>
                                 <select id="tipo_imovel" name="tipo_imovel" class="form-control" required>
-                                    <option value='TODOS' selected>Todos</option>
+                                    <option value='Todos' selected>Todos</option>
                                     <option value='CS'>Casa</option>
                                     <option value='AP'>Apartamento</option>
                                     <option value='TR'>Terreno</option>
@@ -83,40 +83,72 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
         <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VzdGF2b3NnaW0iLCJhIjoiY2xkYWZhNG5qMDlpYjNwcDZkbzMzdHRlbSJ9.1f1FocVPKq1ajqPRSPxUrg';
-            
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v12',
-                center: [-44.89020033670517, -19.68235588860937],
-                zoom: 13.5,
-                bearing: 0,
-                pitch: 0
-            });
-            
-            var locations = [
-                {% if imoveis %}
-                    {% for imovel in imoveis %}
-                        { 
-                            latitude: {{ imovel.latitude|replace }}, 
-                            longitude: {{ imovel.longitude|replace }}, 
-                            title: '{{imovel.logradouro}}, {{imovel.numero}}, {{imovel.bairro}}',
-                            description: 'R$ {{imovel.preco}}',
+            var map = L.map('map').setView([-19.68235588860937, -44.89020033670517], 15);
+
+            // Remove os botões de zoom padrão
+            map.removeControl(map.zoomControl);
+
+            L.control.zoom().setPosition('bottomright').addTo(map);
+
+            // Adicionar a camada de base do mapa
+            var baseMaps = {
+                'Mapa': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                }).addTo(map)
+            };
+
+            // Adicionar camadas adicionais (satélite, híbrido, relevo)
+            var satelliteLayer = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {});
+
+            var hybridLayer = L.layerGroup([L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                maxZoom: 17,
+            }), satelliteLayer]);
+
+            var reliefLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {});
+
+            // Adicionar o controlador de camadas ao mapa
+            L.control.layers(baseMaps, {
+                'Satélite': satelliteLayer,
+                'Híbrido': hybridLayer,
+                'Relevo': reliefLayer
+            }).addTo(map);
+
+            var locations = [    
+                {% if imoveis %}        
+                    {% for imovel in imoveis %}            
+                        {
+                            latitude: {{ imovel.latitude|replace }},                 
+                            longitude: {{ imovel.longitude|replace }},                 
+                            title: '{{imovel.logradouro}}, {{imovel.numero}}, {{imovel.bairro}}',                
+                            description: 'R$ {{imovel.preco}}',                
                             tipo_imovel: '{{imovel.tipo_imovel}}'
-                        },
-                    {% endfor %}
-                {% endif %}
-            ];
+                        },        
+                    {% endfor %}    
+                {% endif %}];
 
             var icons = {
-                'CS': 'url({% static "img/bg-img/house-fill.svg" %})',
-                'AP': 'url({% static "img/bg-img/building-fill.svg" %})',
-                'TR': 'url({% static "img/bg-img/image-alt.svg" %})',
-                'GL': 'url({% static "img/bg-img/shop-window.svg" %})',
-                'IN': 'url({% static "img/bg-img/buildings-fill.svg" %})',
-                'RU': 'url({% static "img/bg-img/farm.svg" %})',
-                'default': 'url(https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png)'
+                'CS': L.icon({iconUrl: '{% static "img/bg-img/house-fill.svg" %}',iconSize: [16, 16],}),
+                'AP': L.icon({iconUrl: '{% static "img/bg-img/building-fill.svg" %}',iconSize: [16, 16],}),
+                'TR': L.icon({iconUrl: '{% static "img/bg-img/image-alt.svg" %}', iconSize: [16, 16],}),
+                'GL': L.icon({iconUrl: '{% static "img/bg-img/shop-window.svg" %}', iconSize: [16, 16],}),
+                'IN': L.icon({iconUrl: '{% static "img/bg-img/buildings-fill.svg" %}',iconSize: [16, 16],}),
+                'RU': L.icon({iconUrl: '{% static "img/bg-img/farm.svg" %}',iconSize: [16, 16],}),
+                'default': L.icon({iconUrl: 'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',iconSize: [50, 50],}),
             };
+
+            var markerList = [];
+
+            // Adicione os marcadores assim que a página for carregada
+            locations.forEach(function(location) {
+                var markerIcon = icons[location.tipo_imovel] || icons['default'];
+
+                var marker = L.marker([location.latitude, location.longitude], { icon: markerIcon })
+                    .bindPopup('<h6>' + location.title + '</h6><p>'+ location.description +'</p><p>' + location.tipo_imovel + '</p>')
+                    .addTo(map);
+
+                // Adiciona o marcador à lista de marcadores para que possa ser removido posteriormente
+                markerList.push(marker);
+            });
 
             var filterSelect = document.getElementById('tipo_imovel')
 
@@ -124,32 +156,21 @@
                 var selectedValue = e.target.value;
                 // Remove todos os marcadores do mapa
                 markerList.forEach(function(marker) {
-                    marker.remove();
+                    map.removeLayer(marker);
                 });
-
+            
                 locations.forEach(function(location) {
-                    if (selectedValue === 'TODOS' || selectedValue === location.tipo_imovel) {
+                    if (selectedValue === 'Todos' || selectedValue === location.tipo_imovel) {
                         var markerIcon = icons[location.tipo_imovel] || icons['default'];
-
-                        var el = document.createElement('div');
-                        el.className = 'marker';
-                        el.style.backgroundImage = markerIcon;
-                        el.style.width = '16px';
-                        el.style.height = '16px';
-
-                        var marker = new mapboxgl.Marker({ element: el })
-                            .setLngLat([location.longitude, location.latitude])
-                            .setPopup(new mapboxgl.Popup({ offset: 25, className: 'popup' })
-                            .setHTML('<h6>' + location.title + '</h6><p>'+ location.description +'</p><p>' + location.tipo_imovel + '</p>'))
+            
+                        var marker = L.marker([location.latitude, location.longitude], { icon: markerIcon })
+                            .bindPopup('<h6>' + location.title + '</h6><p>'+ location.description +'</p><p>' + location.tipo_imovel + '</p>')
                             .addTo(map);
-
+            
                         // Adiciona o marcador à lista de marcadores para que possa ser removido posteriormente
                         markerList.push(marker);
                     }
                 });
             });
-
-            map.addControl(new mapboxgl.NavigationControl());
-            map.addControl(new mapboxgl.FullscreenControl());
         </script>
 {% endblock javascripts %}

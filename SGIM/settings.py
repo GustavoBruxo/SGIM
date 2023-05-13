@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-m!3kduk%gd2p)yh@n$!#pby47s!+@q=-ry8i$%mhb6eh-u2jzo
 DEBUG = True
 
 # load production server from .env
-ALLOWED_HOSTS = ['sgim-production.up.railway.app']
+ALLOWED_HOSTS = ['sgim-production.up.railway.app', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://sgim-production.up.railway.app']
 
@@ -83,7 +83,13 @@ WSGI_APPLICATION = 'SGIM.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sgim',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'localhost'
+    }
 }
 
 # Password validation

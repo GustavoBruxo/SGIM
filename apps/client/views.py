@@ -7,7 +7,7 @@ from .models import Client, Category
 import pytz
 
 
-@login_required()
+@login_required(login_url="login/")
 def clientes(request):
     clientes = Client.objects.filter(ativo=True).order_by('-data_cadastro')
     categoria = Category.objects.order_by('categoria').filter(ativo=True)
@@ -28,7 +28,7 @@ def clientes(request):
     return render(request, 'client/clientes.html', dados)
 
 
-@login_required()
+@login_required(login_url="login/")
 def criacliente(request):
     if request.method == 'POST':
         """Inclui um operação"""
@@ -86,7 +86,7 @@ def criacliente(request):
         return render(request, 'client/cria_cliente.html', dados)
 
 
-@login_required()
+@login_required(login_url="login/")
 def atualizacliente(request):
     """ Atualiza cliente """
     if request.method == 'POST':
@@ -131,7 +131,7 @@ def atualizacliente(request):
         return redirect('clientes')
 
 
-@login_required()
+@login_required(login_url="login/")
 def consultacliente(request, idcliente):
     """ Consulta cliente selecionado """
     cliente = Client.objects.get(id=idcliente)
@@ -149,7 +149,7 @@ def consultacliente(request, idcliente):
     return render(request, 'client/consulta_cliente.html', dados)
 
 
-@login_required()
+@login_required(login_url="login/")
 def editacliente(request, idcliente):
     """ Edita cliente selecionado """
     cliente = Client.objects.get(id=idcliente)
@@ -167,7 +167,7 @@ def editacliente(request, idcliente):
     return render(request, 'client/edita_cliente.html', dados)
 
 
-@login_required()
+@login_required(login_url="login/")
 def deletacliente(request, idcliente):
     """Deleta um cliente"""
     cliente = get_object_or_404(Client, pk=idcliente)

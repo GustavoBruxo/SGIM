@@ -7,7 +7,7 @@ from .models import Properties, Album, Client
 import pytz
 
 
-@login_required()
+@login_required(login_url="login/")
 def imoveis(request):
     imoveis = Properties.objects.order_by('-data_disponivel')
     clientes = Client.objects.order_by('data_cadastro')
@@ -23,7 +23,7 @@ def imoveis(request):
     return render(request, 'properties/imoveis.html', dados)
 
 
-@login_required()
+@login_required(login_url="login/")
 def criaimoveis(request):
     data = datetime.now(pytz.timezone('America/Sao_Paulo'))
 
@@ -96,7 +96,7 @@ def criaimoveis(request):
         return render(request, 'properties/cria_imoveis.html', dados)
 
 
-@login_required()
+@login_required(login_url="login/")
 def atualizaimoveis(request):
     """ Atualiza Imóvel """
     data = datetime.now(pytz.timezone('America/Sao_Paulo'))
@@ -148,7 +148,7 @@ def atualizaimoveis(request):
         return redirect('imoveis')
 
 
-@login_required()
+@login_required(login_url="login/")
 def deletaimoveis(request, idimoveis):
     """ Delete Imóvel """
     imoveis = get_object_or_404(Properties, pk=idimoveis)

@@ -16,3 +16,12 @@
     margin: 0;
     font-size: 14px;
 }
+
+.marker {
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    width: 50px;
+}

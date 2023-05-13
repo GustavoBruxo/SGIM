@@ -83,10 +83,8 @@ def reset(request):
         email = request.POST['email']
         try:
             user = User.objects.get(email=email)
-            print('A1')
         except User.DoesNotExist:
             messages.error(request, 'Este e-mail não está associado a nenhuma conta.')
-            print('A2')
             return redirect('reset')
 
         # Generate a one-time use token and a link to reset the password
@@ -110,8 +108,11 @@ def reset(request):
         email.send()
         messages.success(request, 'Foi enviado um e-mail com instruções para redefinir sua senha.')
         return redirect('login')
-    print('A3')
     return render(request=request, template_name='user/password_reset_request.html')
+
+
+def profile(request):
+    return render(request, 'user/profile.html')
 
 
 def campo_vazio(campo):
